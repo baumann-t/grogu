@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_21_204403) do
+ActiveRecord::Schema.define(version: 2022_02_21_210945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_204403) do
     t.bigint "offer_id", null: false
     t.bigint "user_id", null: false
     t.text "user_message"
-    t.boolean "confirmed"
+    t.boolean "confirmed", default: false
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_204403) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
     t.string "last_name"
-    t.string "side"
+    t.string "side", default: "neutral"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
