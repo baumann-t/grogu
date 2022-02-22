@@ -23,7 +23,12 @@ end
 # Create offers
 puts "Creating offers"
 
+
 25.times do
+  url = "https://akabab.github.io/starwars-api/api/id/#{rand(1..16)}.json"
+  user_serialized = URI.open(url).read
+  user = JSON.parse(user_serialized)
+  file = URI.open(user["image"])
   rand_user = User.all.sample
   offer = Offer.new(
     title: "#{[Faker::Movies::StarWars.specie, Faker::Movies::StarWars.vehicle, Faker::Movies::StarWars.droid].sample} for #{["sale", "hire", "rent"].sample}",
@@ -32,6 +37,7 @@ puts "Creating offers"
     description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}"
   )
   offer.user = rand_user
+  offer.photo.attach(io: file, filename: "new#{rand(1..111111111)}.png")
   offer.save!
   puts offer.title
 end
