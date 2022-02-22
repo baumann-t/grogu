@@ -5,7 +5,7 @@ class OffersController < ApplicationController
   def show; end
 
   def my_offers
-    @offers = Offer.all
+    @offers = Offer.where(user_id: current_user.id)
   end
 
   def new
