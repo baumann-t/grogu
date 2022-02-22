@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :show, :my_offers ]
-  before_action :set_offer, only: [:show, :edit, :update]
+  before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
   def show; end
 
@@ -30,6 +30,11 @@ class OffersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @offer.destroy
+    redirect_to offers_path
   end
 
   private
