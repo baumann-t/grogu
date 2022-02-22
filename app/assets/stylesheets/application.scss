@@ -11,3 +11,12 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// general CSS
+body {
+  background-image: url("http://www.laterre.ca/wp-content/uploads/ciel-etoile550x324.jpg");
+}
+
+.container {
+  margin-top: 50px;
+}
