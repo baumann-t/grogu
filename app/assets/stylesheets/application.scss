@@ -15,8 +15,11 @@
 // general CSS
 body {
   background-image: url("http://www.laterre.ca/wp-content/uploads/ciel-etoile550x324.jpg");
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
-  margin-top: 50px;
+  margin-top: 70px;
 }
