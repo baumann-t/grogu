@@ -1,3 +1,6 @@
+<% if @offer.photo.attached?  %>
+  <%= cl_image_tag @offer.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
 <h1><%= @offer.title %></h1>
 <p><%= @offer.description %></p>
 <a href="#"><%= link_to 'Home', root_path %></a>
