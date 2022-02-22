@@ -1,0 +1,13 @@
+<div class="container text-white">
+  <h1>All our offers</h1>
+  <% @offers.each do |offer| %>
+    <div>
+      <%= offer.title%>
+    </div>
+    <div>
+      <%= offer.description %>
+      <p> <%= offer.price %> CREDITS </p>
+    </div>
+    <hr>
+  <% end %>
+</div>
