@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_booking, only: :show
+  before_action :set_booking, only: [:show, :update]
 
   def show; end
 
