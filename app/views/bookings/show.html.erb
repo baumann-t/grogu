@@ -1,1 +1,21 @@
-<h1><%= @booking.user_message %></h1>
+<% if @booking.offer.user == current_user %>
+  <h1 class="text-white"> Booking for: <%= @booking.user.username %></h1>
+  <%# now wtf do I need here
+  - a checkbox to confirm or deny confirmed %>
+  <h2 class="text-white">Booking Details:</h2>
+  <p class="text-white"><%= @booking.offer.title %> </p>
+  <p class="text-white"><%= @booking.offer.location %> </p>
+  <p class="text-white"><%= @booking.offer.description %> </p>
+  <p class="" style="<%= (@booking.confirmed) ? "color: green;": "color: red;"%>">Booking confirmed? <%= (@booking.confirmed) ? "Affirmative": "Negative" %> </p>
+
+  <div class="text-white">
+    <%= simple_form_for @booking do |f| %>
+      <%= f.input :confirmed%>
+      <%= f.button :submit, "confirm booking"%>
+    <% end %>
+  </div>
+
+  <% else %>
+    <p class="text-white"><%="You are not authorized to see this booking." %></p>
+    <%= link_to 'Home', root_path %>
+<% end %>
