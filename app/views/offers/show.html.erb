@@ -1,6 +1,19 @@
-<% if @offer.photo.attached?  %>
-  <%= cl_image_tag @offer.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-<h1><%= @offer.title %></h1>
-<p><%= @offer.description %></p>
-<a href="#"><%= link_to 'Home', root_path %></a>
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="col-6">
+      <% if @offer.photo.attached?  %>
+        <%= cl_image_tag @offer.photo.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
+      <div class="text-light">
+        <h1><%= @offer.title %></h1>
+        <p><%= @offer.description %></p>
+        <div class="list-inline">
+          <%= link_to 'Home', root_path, class:"btn btn-light" %>
+          <% if user_signed_in? && @offer.user != current_user %>
+            <%= link_to 'Bo ok this offer!', new_offer_booking_path(@offer), class:"btn btn-light"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
