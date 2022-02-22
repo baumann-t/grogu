@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :show, :my_offers ]
-  before_action :set_offer, only: :show
+  before_action :set_offer, only: [:show, :edit, :update]
 
   def show; end
 
@@ -19,6 +19,16 @@ class OffersController < ApplicationController
       redirect_to offer_path(@offer)
     else
       render 'offers/new'
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @offer.update(offer_params)
+      redirect_to @offer
+    else
+      render :edit
     end
   end
 
