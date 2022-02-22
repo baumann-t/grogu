@@ -4,9 +4,20 @@ class OffersController < ApplicationController
 
   def show; end
 
+  def new
+    @offer = Offer.new
+  end
+
+  def create
+  end
+
   private
 
   def set_offer
     @offer = Offer.find(params[:id])
+  end
+
+  def offer_params
+    params.require(:offer).permit(:title, :price, :location, :description)
   end
 end
