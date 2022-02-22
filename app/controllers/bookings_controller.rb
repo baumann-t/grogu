@@ -26,6 +26,13 @@ class BookingsController < ApplicationController
     @user_bookings = Booking.where(user_id: current_user.id)
   end
 
+  def update
+    if @booking.update(booking_params)
+      redirect_to @booking, notice: "The booking was confirmed successfully. May the Force be with you."
+    else
+      render :edit
+    end
+  end
 
   private
 
@@ -34,6 +41,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:user_message, :start_date, :end_date)
+    params.require(:booking).permit(:user_message, :start_date, :end_date, :confirmed)
   end
 end
