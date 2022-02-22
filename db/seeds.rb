@@ -1,7 +1,56 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "Destroying all data from the database"
+# Destroy instances from the database
+User.destroy_all
+Offer.destroy_all
+Booking.destroy_all
+
+
+puts "Creating users"
+# Create users
+25.times do
+  user_name = Faker::Movies::StarWars.character
+  email_username = user_name.downcase.gsub(/\s+/, ".")
+  user = User.new(
+    username: user_name,
+    email: "#{email_username}#{rand(1..100)}@test.com",
+    password: "123456",
+    side: ['evil', 'good', 'neutral'].sample
+  )
+  user.save!
+  puts user.username
+end
+
+# Create offers
+puts "Creating offers"
+
+25.times do
+  rand_user = User.all.sample
+  offer = Offer.new(
+    title: "#{[Faker::Movies::StarWars.specie, Faker::Movies::StarWars.vehicle, Faker::Movies::StarWars.droid].sample} for #{["sale", "hire", "rent"].sample}",
+    price: rand(1..1000),
+    location: Faker::Movies::StarWars.planet,
+    description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}"
+  )
+  offer.user = rand_user
+  offer.save!
+  puts offer.title
+end
+
+
+# Create bookings
+puts "Creating bookings"
+20.times do
+  rand_user = User.all.sample
+  rand_offer = Offer.all.sample
+  book = Booking.new(
+    user_message: Faker::Movies::StarWars.wookiee_sentence,
+    start_date: Date.new(2001,2,3),
+    end_date: Date.new(2003,2,3)
+  )
+
+  book.user = rand_user
+  book.offer = rand_offer
+
+  book.save!
+  puts book.user_message
+end
