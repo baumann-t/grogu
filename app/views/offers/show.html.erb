@@ -8,9 +8,10 @@
         <h1><%= @offer.title %></h1>
         <p><%= @offer.description %></p>
         <div class="list-inline">
-          #<%= link_to 'Edit', edit_offer_path, class:"btn btn-light" %>
-          <%= link_to 'Edit', edit_offer_path, class:"btn btn-light" %>
           <%= link_to 'Home', root_path, class:"btn btn-light" %>
+          <% if user_signed_in? && @offer.user == current_user %>
+            <%= link_to 'Edit', edit_offer_path, class:"btn btn-light" %>
+          <% end %>
           <% if user_signed_in? && @offer.user != current_user %>
             <%= link_to 'Book this offer!', new_offer_booking_path(@offer), class:"btn btn-light"%>
           <% end %>
@@ -19,4 +20,3 @@
     </div>
   </div>
 </div>
-
