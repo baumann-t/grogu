@@ -1,14 +1,9 @@
-<div class="container">
+<div class="container text-white">
   <h1>My offers</h1>
   <% @offers.each do |offer| %>
-    <div>
-      <% offer.user_id == current_user %>
-      <%= offer.title%>
-    </div>
-    <div>
-      <%= offer.description %>
-      <p> <%= offer.price %> $ </p>
-    </div>
+      <h3><%= offer.title%></h3>
+      <p><%= offer.description %></p>
+      <p><%= offer.price %> CREDITS </p>
     <hr>
   <% end %>
 </div>
