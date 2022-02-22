@@ -22,6 +22,11 @@ class BookingsController < ApplicationController
     end
   end
 
+  def user_bookings
+    @user_bookings = Booking.where(user_id: current_user.id)
+  end
+
+
   private
 
   def set_booking
