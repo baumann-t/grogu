@@ -1,13 +1,21 @@
 <div class="container text-white">
   <h1>All our offers</h1>
 
-  <% @offers.each do |offer| %>
-    <div class="cards-offer">
-      <div class="card-container">
-        <h2><%= offer.title %></h2>
-        <p><%= offer.description %></p>
-        <p><%= offer.price %> CREDITS</p>
-      </div>
+
+<div class="grid_container">
+  <% @offers.each do |offer|%>
+    <div class="card-offer d-flex" style="width: 18rem;">
+      <% if movie.poster_url.nil? %>
+        <%= cl_image_tag movie.photo.key %>
+      <% else %>
+        <%= image_tag movie.poster_url, class:"card-offer-img-top" %>
+      <% end %>
+        <div class="card-offer-body d-flex flex-column">
+            <h5 class="card-offer-title"><%= offer.title %></h5>
+            <p><%= offer.description %></h5>
+            <p><%= offer.price %> CREDITS</p>
+        </div>
+      <%= link_to "Delete movie from list", movie_path(movie), method: :delete, class:"btn btn-warning mt-auto mb-2 mx-4"%>
     </div>
   <% end %>
 </div>
