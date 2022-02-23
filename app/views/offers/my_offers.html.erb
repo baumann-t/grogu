@@ -2,9 +2,11 @@
   <% if @offers.empty? %>
     <h1 class="text-warning">You haven't created any offer yet!</h1>
     <%= link_to "Add an offer!", new_offer_path, class: "btn btn-light pt-2" %>
+    <%= link_to "HOME", root_path, class:"btn btn-light pt-2" %>
   <% else %>
     <h1 class="text-warning">My offers</h1>
-    <%= link_to "Add an offer!", new_offer_path, class: "btn btn-light mb-4" %>
+    <%= link_to "Add a new offer!", new_offer_path, class: "btn btn-light mb-4" %>
+    <%= link_to "HOME", root_path, class:"btn btn-light mb-4" %>
     <hr>
     <% @offers.each_with_index do |offer, index| %>
         <h3><%= index + 1 %>. <%= offer.title%></h3>
