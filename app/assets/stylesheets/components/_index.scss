@@ -12,3 +12,13 @@
   margin-bottom: 40px;
   font-weight: 500;
 }
+
+
+// Light side gradient:
+.light {
+  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(56, 58, 199, 0.30));
+}
+// Dark-side gradient:
+.dark {
+  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(172, 1, 1, 0.30));
+}
