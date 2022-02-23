@@ -34,6 +34,9 @@ class BookingsController < ApplicationController
     end
   end
 
+  def seller_bookings
+  end
+
   private
 
   def set_booking
