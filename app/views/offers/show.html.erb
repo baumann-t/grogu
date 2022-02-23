@@ -1,19 +1,21 @@
 <div class="container">
-  <div class="d-flex justify-content-center">
-    <div class="col-6">
+  <div class="d-flex justify-content-center text-white">
+    <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 50rem; height: 35rem;">
       <% if @offer.photo.attached?  %>
-        <%= cl_image_tag @offer.photo.key, height: 300, width: 400, crop: :fill %>
+        <%= cl_image_tag @offer.photo.key, style:"height:300px, padding-top:15px" %>
       <% end %>
-      <div class="text-light">
-        <h1><%= @offer.title %></h1>
-        <p><%= @offer.description %></p>
+      <div class="card-offer-body d-flex flex-column align-items-center align-self-center">
+        <h5 class="font-weight-bold"><%= @offer.title %></h5>
+        <p class="overflow-auto" style="font-size: 14px;"><%= @offer.description %></h5>
+        <p class="price"><%= @offer.price %> CREDITS</p>
         <div class="list-inline">
-          <%= link_to 'Back', offers_path, class:"btn btn-light" %>
-          <% if user_signed_in? && @offer.user == current_user %>
-            <%= link_to 'Edit', edit_offer_path, class:"btn btn-light" %>
-          <% end %>
           <% if user_signed_in? && @offer.user != current_user %>
             <%= link_to 'Book this offer!', new_offer_booking_path(@offer), class:"btn btn-light"%>
+          <% end %>
+          <%= link_to 'All offers', offers_path, class:"btn btn-light" %>
+          <%= link_to 'My offers', my_offers_path, class:"btn btn-light" %>
+          <% if user_signed_in? && @offer.user == current_user %>
+            <%= link_to 'Edit this offer', edit_offer_path, class:"btn btn-light" %>
           <% end %>
         </div>
       </div>

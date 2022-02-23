@@ -7,9 +7,9 @@
       <%= f.input :location%>
       <%= f.input :description%>
       <%= f.input :photo, as: :file %>
-      <%= link_to "Back", offer_path, class:"btn btn-primary" %>
-      <%= f.submit class:"btn btn-primary" %>
-      <%= link_to "Delete", @offer, method: :delete, data: { confirm: "Would you like to delete this offer?"}, class:"btn btn-primary" %>
+      <%= link_to "Back", offer_path, class:"btn btn-light" %>
+      <%= f.submit class:"btn btn-light" %>
+      <%= link_to "Delete", @offer, method: :delete, data: { confirm: "Would you like to delete this offer?"}, class:"btn btn-light" %>
     <% end %>
   </div>
 </div>
