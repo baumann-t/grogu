@@ -2,7 +2,7 @@
   <h1 class="mb-3">Bookings on: <strong><%= @offer.title %></strong></h1>
   <% @bookings.each do |booking| %>
     <p> <strong>Booking from :</strong> <%= User.where(id: booking.user_id).first.username %> </p>
-    <p> <strong>His message :</strong> <%= booking.user_message %> </p>
+    <p> <strong>Their message :</strong> <%= booking.user_message %> </p>
     <% if booking.confirmed %>
       <%= link_to "Booking already confirmed", booking_path(booking), class:"btn btn-success" %>
     <% else %>
