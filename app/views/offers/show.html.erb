@@ -1,4 +1,11 @@
-<div class="container">
+
+<% if @offer.user.side == "good"%>
+   <div class="container light">
+<% elsif @offer.user.side == "evil"%>
+   <div class="container dark">
+<% else %>
+   <div class="container">
+<% end %>
   <div class="d-flex justify-content-center text-white">
     <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 50rem; height: 35rem;">
       <% if @offer.photo.attached?  %>
