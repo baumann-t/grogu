@@ -1,9 +1,9 @@
 <div class="container text-white">
   <% if @user_bookings.empty? %>
-    <h1 class="pb-3">No bookings yet!</h1>
+    <h1 class="pb-3">No purchases yet!</h1>
     <%= link_to "Book a service!", offers_path, class:"btn btn-light" %>
     <% else %>
-    <h1 class="pb-3">My booking history</h1>
+    <h1 class="pb-3 text-warning">My purchase history</h1>
     <% @user_bookings.each do |booking| %>
       <div class="pb-3">
           <h3>Your message to the owner: <%= booking.user_message%></h3>
@@ -11,9 +11,10 @@
             <p>Start date: <%= booking.start_date %> / </p>
             <p>End date: <%= booking.end_date %></p>
           </div>
-          <%= link_to "View booking details", booking_path(booking), class:"btn btn-light" %>
+          <%= link_to "View purchase details", booking_path(booking), class:"btn btn-light" %>
         <hr>
     </div>
     <% end %>
+     <%= link_to "HOME", root_path, class:"btn btn-light" %>
   <% end %>
 </div>
