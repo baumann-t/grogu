@@ -7,7 +7,10 @@
         <h2><%= offer.title %></h2>
         <p><%= offer.description %></p>
         <p><%= offer.price %> CREDITS</p>
+        <%= link_to "Details", offer_path(offer) %>
+        <%= link_to "Book", new_offer_booking_path(offer) %>
       </div>
     </div>
+    <hr>
   <% end %>
 </div>

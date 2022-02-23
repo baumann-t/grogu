@@ -4,6 +4,8 @@
       <h3><%= offer.title%></h3>
       <p><%= offer.description %></p>
       <p><%= offer.price %> CREDITS </p>
+      <%= link_to "View more", offer_path(offer) %>
     <hr>
   <% end %>
+  <%= link_to "Create an offer", new_offer_path %>
 </div>
