@@ -1,13 +1,20 @@
 <div class="container text-white">
-  <h1 class="text-warning pb-4">My offers</h1>
-  <% @offers.each do |offer| %>
-      <h3><%= offer.title%></h3>
-      <p><%= offer.description %></p>
-      <p><%= offer.price %> CREDITS </p>
-      <%= link_to "View this offer", offer_path(offer), class: "btn btn-light" %>
-      <% if offer.bookings.count > 0 %>
-        <%= link_to "View the #{offer.bookings.count} bookings on this offer", offers_bookings_path(offer), class: "btn btn-warning"%>
-      <% end %>
+  <% if @offers.empty? %>
+    <h1 class="text-warning">You haven't created any offer yet!</h1>
+    <%= link_to "Add an offer!", new_offer_path, class: "btn btn-light pt-2" %>
+  <% else %>
+    <h1 class="text-warning">My offers</h1>
+    <%= link_to "Add an offer!", new_offer_path, class: "btn btn-light mb-4" %>
     <hr>
+    <% @offers.each_with_index do |offer, index| %>
+        <h3><%= index + 1 %>. <%= offer.title%></h3>
+        <p><%= offer.description %></p>
+        <p><%= offer.price %> CREDITS </p>
+        <%= link_to "View this offer", offer_path(offer), class: "btn btn-light" %>
+        <% if offer.bookings.count > 0 %>
+          <%= link_to "View the #{offer.bookings.count} bookings on this offer", offers_bookings_path(offer), class: "btn btn-warning"%>
+        <% end %>
+      <hr>
+    <% end %>
   <% end %>
 </div>
