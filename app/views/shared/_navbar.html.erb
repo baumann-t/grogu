@@ -2,7 +2,7 @@
         <%= link_to "/", class: "navbar-brand p-2" do %>
           <div class="d-flex align-items-center">
             <%= image_tag "https://cdn.shopify.com/s/files/1/0346/1483/7380/products/BabyYodainCircle_1024x1024@2x.png?v=1609173674" %>
-            <h4 class="m-0">GROGU</h4>
+            <h4 class="m-0 site-name">GROGU</h4>
           </div>
         <% end %>
 
@@ -15,6 +15,7 @@
               style: "width: 170px"
             %>
             <%= submit_tag "Search!", class: "btn btn-secondary" %>
+
           </div>
         <% end %>
 
@@ -31,8 +32,8 @@
               <li class="nav-item dropdown">
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <%= link_to "Action", "#", class: "dropdown-item" %>
-                  <%= link_to "Another action", "#", class: "dropdown-item" %>
+                  <%= link_to "My offers", "#", class: "dropdown-item" %>
+                  <%= link_to "My profile", "#", class: "dropdown-item" %>
                   <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                 </div>
               </li>

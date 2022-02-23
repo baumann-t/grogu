@@ -34,7 +34,9 @@ class BookingsController < ApplicationController
     end
   end
 
-  def seller_bookings
+  def offer_bookings
+    @offer = Offer.where(id: params[:offer_id]).first
+    @bookings = Booking.where(offer_id: params[:offer_id])
   end
 
   private
