@@ -4,7 +4,12 @@ class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
   def index
-    @offers = Offer.all
+    if params[:query]
+      sql_query = "title ILIKE :query OR description ILIKE :query OR location ILIKE :query"
+      @offers = Offer.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @offers = Offer.all
+    end
   end
 
   def show; end
@@ -39,7 +44,7 @@ class OffersController < ApplicationController
 
   def destroy
     @offer.destroy
-    redirect_to offers_path
+    redirect_to my_offers_path
   end
 
   private

@@ -1,7 +1,6 @@
 <div class="container text-white">
   <h1>All our offers</h1>
 
-
 <div class="grid_container">
   <% @offers.each do |offer|%>
     <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 25rem; height: 20rem;">
@@ -12,8 +11,10 @@
         <p class="text-justify" style="font-size: 14px;"><%= offer.description %></h5>
         <p class="price"><%= offer.price %> CREDITS</p>
         <%= link_to "More", offer_path(offer[:id]) %>
+
       </div>
     </div>
+    <hr>
   <% end %>
 </div>
 
