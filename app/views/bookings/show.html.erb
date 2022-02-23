@@ -1,23 +1,29 @@
-<% if @booking.offer.user == current_user || @booking.user == current_user %>
-  <h1 class="text-white"> Booking for: <%= @booking.user.username %></h1>
-  <h2 class="text-white">Booking Details:</h2>
-  <p class="text-white"><%= @booking.offer.title %> </p>
-  <p class="text-white"><%= @booking.offer.user.username %> </p>
-  <p class="text-white"><%= @booking.offer.location %> </p>
-  <p class="text-white"><%= @booking.offer.description %> </p>
-  <p class="" style="<%= (@booking.confirmed) ? "color: green;": "color: red;"%>">Booking confirmed? <%= (@booking.confirmed) ? "Affirmative": "Negative" %> </p>
+<div class="container">
+  <% if @booking.offer.user == current_user || @booking.user == current_user %>
+    <h1 class="text-warning"> Booking from: <%= @booking.user.username %></h1>
+    <li class="text-white"><strong>His message:</strong> <%= @booking.user_message %> </li>
+    <li class="text-white"><strong>Required start date:</strong> <%= @booking.start_date %> </li>
+    <li class="text-white pb-4"><strong>Required end date:</strong> <%= @booking.end_date %> </li>
+    <h2 class="text-warning">Recap of the offer:</h2>
+    <li class="text-white"><strong>Offer title:</strong> <%= @booking.offer.title %> </li>
+    <li class="text-white"><strong>Location:</strong> <%= @booking.offer.location %> </li>
+    <h4 class="pt-4" style="<%= (@booking.confirmed) ? "color: green;": "color: red;"%>">Booking confirmed? <%= (@booking.confirmed) ? "Affirmative": "Negative" %> </h4>
 
-  <% if @booking.offer.user == current_user %>
-    <div class="text-white">
-      <%= simple_form_for @booking do |f| %>
-        <%= f.input :confirmed%>
-        <%= f.button :submit, "Confirm Booking", { class: 'text-white btn-primary' }%>
-      <% end %>
-    </div>
+    <% if @booking.offer.user == current_user %>
+      <div class="text-white">
+        <%= simple_form_for @booking do |f| %>
+          <%= f.input :confirmed%>
+        <div class ="d-flex">
+          <%= f.button :submit, "Confirm Booking", { class: 'btn-light' }%>
+          <%= link_to "Back to all bookings", offers_bookings_path(@booking.offer), class:"btn btn-light p-2 mx-2" %>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+
+
+    <% else %>
+      <p class="text-white"><%="You are not authorized to see this booking." %></p>
+      <%= link_to 'Home', root_path %>
   <% end %>
-  <%= link_to "Back", my_bookings_path %>
-
-  <% else %>
-    <p class="text-white"><%="You are not authorized to see this booking." %></p>
-    <%= link_to 'Home', root_path %>
-<% end %>
+</div>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [:show, :update, :edit]
 
   get '/my-offers', to: 'offers#my_offers', as: 'my_offers'
-  get 'my-bookings', to: 'bookings#user_bookings', as: 'my_bookings'
-  get 'my-seller-bookings', to: 'bookings#seller_bookings', as: 'my_seller_bookings'
+  get 'my_bookings', to: 'bookings#user_bookings', as: 'my_bookings'
+  get '/:offer_id/bookings', to: 'bookings#offer_bookings', as: 'offers_bookings'
+
 end
