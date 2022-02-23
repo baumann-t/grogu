@@ -4,21 +4,17 @@
 
 <div class="grid_container">
   <% @offers.each do |offer|%>
-    <div class="card-offer d-flex p-3 my-3" style="width: 18rem;">
-      <% if offer.photo.nil? %>
-          <% cl_image_tag offer.photo.key %>
-      <% else %>
-         <% cl_image_tag offer.photo, class:"card-offer-img-top" %>
-      <% end %>
-        <div class="card-offer-body d-flex flex-column">
-            <h5 class="card-offer-title"><%= offer.title %></h5>
-            <p><%= offer.description %></h5>
-            <p><%= offer.price %> CREDITS</p>
-        </div>
+    <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 25rem; height: 20rem;">
+      <%= cl_image_tag offer.photo.key, class:"card-offer-img-top" %>
+
+      <div class="card-offer-body d-flex flex-column">
+        <h5 class="card-offer-title"><%= offer.title %></h5>
+        <p class="text-justify" style="font-size: 14px;"><%= offer.description %></h5>
+        <p class="price"><%= offer.price %> CREDITS</p>
+        <%= link_to "More", offer_path(offer[:id]) %>
+      </div>
     </div>
   <% end %>
 </div>
-
-
 
       <%# link_to "Delete movie from list", movie_path(movie), method: :delete, class:"btn btn-warning mt-auto mb-2 mx-4"%>

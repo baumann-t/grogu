@@ -54,3 +54,26 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.card-offer {
+  border: 1px solid #E6DA34;
+  border-radius: 4px;
+  box-shadow: 0px 2px 10px #E7E7E7;
+  // justify-content: space-between;
+}
+.card-offer-img-top {
+  height: 150px;
+}
+
+.card-offer-body{
+  padding: 5px;
+}
+
+.card-offer-title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.price {
+  color: #E6DA34;
+}
