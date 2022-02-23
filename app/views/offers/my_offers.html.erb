@@ -1,11 +1,13 @@
 <div class="container text-white">
-  <h1>My offers</h1>
+  <h1 class="text-warning pb-4">My offers</h1>
   <% @offers.each do |offer| %>
       <h3><%= offer.title%></h3>
       <p><%= offer.description %></p>
       <p><%= offer.price %> CREDITS </p>
-      <%= link_to "View more", offer_path(offer) %>
+      <%= link_to "View this offer", offer_path(offer), class: "btn btn-light" %>
+      <% if offer.bookings.count > 0 %>
+        <%= link_to "View the #{offer.bookings.count} bookings on this offer", offers_bookings_path(offer), class: "btn btn-warning"%>
+      <% end %>
     <hr>
   <% end %>
-  <%= link_to "Create an offer", new_offer_path %>
 </div>
