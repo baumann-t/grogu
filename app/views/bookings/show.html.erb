@@ -13,7 +13,7 @@
     <div class="text-white">
       <%= simple_form_for @booking do |f| %>
         <%= f.input :confirmed%>
-        <%= f.button :submit, "confirm booking"%>
+        <%= f.button :submit, "Confirm Booking", { class: 'text-white btn-primary' }%>
       <% end %>
     </div>
   <% end %>
