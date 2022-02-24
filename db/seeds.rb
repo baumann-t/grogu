@@ -14,7 +14,7 @@ puts "Creating users"
     username: user_name,
     email: "#{email_username}@test.com",
     password: "123456",
-    side: ['evil', 'good', 'neutral'].sample
+    side: ['dark', 'light', 'neutral'].sample
   )
   user.save!
   puts user.username
