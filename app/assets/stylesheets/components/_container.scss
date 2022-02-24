@@ -9,3 +9,15 @@
   margin-top: 20px;
   margin-bottom: 20px
 }
+
+@media(max-width: 1400px) {
+  .grid_container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 992px) {
+  .grid_container {
+    grid-template-columns: 1fr;
+  }
+}
