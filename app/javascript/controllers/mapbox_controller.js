@@ -21,7 +21,7 @@ export default class extends Controller {
       this.map = new mapboxgl.Map({
         container: this.element,
         // style: "mapbox://styles/mapbox/streets-v10"
-        style: "mapbox://styles/kierandunch/ckzzngzx3000815lqunln2okg"
+        style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j"
       })
       this.#addMarkersToMap()
       this.#fitMapToMarkers()
