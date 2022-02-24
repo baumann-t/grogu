@@ -8,13 +8,13 @@ Booking.destroy_all
 puts "Creating users"
 # Create users
 25.times do
-  user_name = Faker::Movies::StarWars.character
+  user_name = Faker::Movies::StarWars.unique.character
   email_username = user_name.downcase.gsub(/\s+/, ".")
   user = User.new(
     username: user_name,
-    email: "#{email_username}#{rand(1..100)}@test.com",
+    email: "#{email_username}@test.com",
     password: "123456",
-    side: ['evil', 'good', 'neutral'].sample
+    side: ['dark', 'light', 'neutral'].sample
   )
   user.save!
   puts user.username
@@ -31,8 +31,8 @@ puts "Creating offers"
   file = URI.open(user["image"])
   rand_user = User.all.sample
   offer = Offer.new(
-    title: "#{[Faker::Movies::StarWars.specie, Faker::Movies::StarWars.vehicle, Faker::Movies::StarWars.droid].sample} for #{["sale", "hire", "rent"].sample}",
-    price: rand(1..1000),
+    title: "#{[Faker::Movies::StarWars.specie, Faker::Movies::StarWars.vehicle, Faker::Movies::StarWars.droid].sample} #{['available', 'for hire', 'for rent'].sample}",
+    price: rand(1..100_00),
     # location: Faker::Movies::StarWars.planet,
     description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}",
     address: Faker::Address.building_number
