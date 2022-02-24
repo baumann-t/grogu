@@ -1,0 +1,32 @@
+<% if @user.side == "good"%>
+   <div class="container light">
+<% elsif @user.side == "evil"%>
+   <div class="container dark">
+<% else %>
+   <div class="container">
+<% end %>
+  <div class="d-flex justify-content-center text-white mb-5">
+    <div class="card-offer bg-black d-flex flex-column align-items-center py-5" style="width: 35rem; height: 30rem;">
+      <% if @user.photo.attached?  %>
+        <%= cl_image_tag @user.photo.key, style:"height:300px" %>
+      <% end %>
+      <div class="card-offer-body d-flex flex-column ">
+        <h5 class="font-weight-bold"> <strong>Username:</strong> <%= @user.username %></h5>
+        <h5 class="overflow-auto"> <strong>Side:</strong> <%= @user.side %></h5>
+        <% if @user.offers.length > 0 %>
+            <h5><strong>All offers:</strong></h5>
+        <% end %>
+        <% @user.offers.each do |offer| %>
+          <div class="d-flex">
+          <li> <%= offer.title %> </li>
+          <%= link_to 'View offer', offer_path(offer), class:"text-white px-2" %>
+          </div>
+        <% end %>
+        <div class="list-inline pt-4", style="text-align: center">
+        <%= link_to "BACK", request.referer.present? ? request.referer : default_path, class:"btn btn-light" %>
+        <%= link_to 'Home', root_path, class:"btn btn-light" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
