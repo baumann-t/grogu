@@ -32,8 +32,10 @@ class OffersController < ApplicationController
   def create
     @offer = Offer.new(offer_params)
     @offer.user = current_user
-    @offer.latitude = Geocoder.search(@offer.address).first.latitude
-    @offer.longitude = Geocoder.search(@offer.address).first.longitude
+    if Geocoder.search(@offer.address).first
+      @offer.latitude = Geocoder.search(@offer.address).first.latitude
+      @offer.longitude = Geocoder.search(@offer.address).first.longitude
+    end
     if @offer.save
       redirect_to offer_path(@offer)
     else

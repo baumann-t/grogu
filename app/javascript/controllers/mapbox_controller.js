@@ -29,6 +29,8 @@ export default class extends Controller {
       // It can be wahtever I want
         this.element.insertAdjacentHTML("afterbegin", "<h4>Sorry, we could not find what you are looking for</h4>")
     }
+    this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl }))
   }
 
   #addMarkersToMap() {
