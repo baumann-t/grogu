@@ -22,6 +22,9 @@
           <% end %>
           <%= link_to 'All offers', offers_path, class:"btn btn-light" %>
           <%= link_to 'My offers', my_offers_path, class:"btn btn-light" %>
+          <% if @offer.reviews.length > 0 %>
+            <%= link_to 'All reviews', offer_reviews_path(@offer), class:"btn btn-light" %>
+          <% end %>
           <% if user_signed_in? && @offer.my_offer?(current_user) %>
             <%= link_to 'Edit this offer', edit_offer_path, class:"btn btn-light" %>
           <% end %>

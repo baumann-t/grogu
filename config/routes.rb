@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :offers do
     resources :bookings, only: [:new, :create]
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: [:new, :create, :index]
   end
 
   resources :bookings, only: [:show, :update, :edit]
-  resources :reviews, only: [:show]
+
 
   get '/my-offers', to: 'offers#my_offers', as: 'my_offers'
   get 'my_bookings', to: 'bookings#user_bookings', as: 'my_bookings'
