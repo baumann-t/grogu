@@ -15,15 +15,21 @@
 
           <%= cl_image_tag offer.photo.key, class:"card-offer-img-top" %>
 
-          <div class="card-offer-body d-flex flex-column">
-            <h5 class="card-offer-title"><%= offer.title %></h5>
-            <p class="overflow-auto" style="font-size: 14px;"><%= offer.description %></h5>
-            <p class="price"><%= offer.price %> CREDITS</p>
-            <%= link_to "Details", offer_path(offer[:id]) %>
+          <div class="card-offer-body d-flex flex-column justify-content-between">
+            <div class="card-offer-info">
+              <h5 class="card-offer-title"><%= offer.title %></h5>
+              <p class="overflow-auto" style="font-size: 14px;"><%= offer.description %></h5>
+            </div>
+
+            <div class="card-offer-details">
+              <p class="price"><%= offer.price %> CREDITS</p>
+              <%= link_to "Details", offer_path(offer[:id]) %>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
+
     <div id="map"
       data-controller="mapbox"
       data-mapbox-markers-value="<%= @markers.to_json %>"
