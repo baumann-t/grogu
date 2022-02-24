@@ -22,8 +22,14 @@ export default class extends Controller {
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker()
+      const customMarker = document.createElement("i")
+      customMarker.className = "fa-brands fa-galactic-republic"
+      customMarker.style.fontSize = "30px"
+      customMarker.style.color = "red"
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      new mapboxgl.Marker(customMarker)
         .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup)
         .addTo(this.map)
     });
   }
