@@ -4,9 +4,8 @@ class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:query]
-      sql_query = "title ILIKE :query OR description ILIKE :query OR location ILIKE :query"
-      @offers = Offer.where(sql_query, query: "%#{params[:query]}%")
+    if params[:query].present?
+      @offers = Offer.search_by_title(params[:query])
     else
       @offers = Offer.all
     end
