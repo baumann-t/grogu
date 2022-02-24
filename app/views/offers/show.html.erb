@@ -6,14 +6,15 @@
 <% else %>
    <div class="container">
 <% end %>
-  <div class="d-flex justify-content-center text-white">
+  <div class="d-flex justify-content-center text-white mb-5">
     <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 50rem; height: 35rem;">
       <% if @offer.photo.attached?  %>
         <%= cl_image_tag @offer.photo.key, style:"height:300px, padding-top:15px" %>
       <% end %>
       <div class="card-offer-body d-flex flex-column align-items-center align-self-center">
         <h5 class="font-weight-bold"><%= @offer.title %></h5>
-        <p class="overflow-auto" style="font-size: 14px;"><%= @offer.description %></h5>
+        <p class="overflow-auto" style="font-size: 14px; text-align: center"><%= @offer.description %></h5>
+        <p>Offer by: <%= link_to @offer.user.username, user_path(@offer.user), style:"color:whiter" %></p>
         <p class="price"><%= @offer.price %> CREDITS</p>
         <div class="list-inline">
           <% if user_signed_in? && @offer.user != current_user %>
