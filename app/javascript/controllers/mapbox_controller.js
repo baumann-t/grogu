@@ -11,24 +11,27 @@ export default class extends Controller {
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
       container: this.element,
-      // style: "mapbox://styles/mapbox/streets-v10"
+      center: [-0.976295, 52.173357],
+      minZoom: 5,
       style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j"
     })
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
-    if (this.markersValue.length !== 0) {
-      this.map = new mapboxgl.Map({
-        container: this.element,
-        // style: "mapbox://styles/mapbox/streets-v10"
-        style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j"
-      })
-      this.#addMarkersToMap()
-      this.#fitMapToMarkers()
-    } else {
-      // It can be wahtever I want
-        this.element.insertAdjacentHTML("afterbegin", "<h4>Sorry, we could not find what you are looking for</h4>")
-    }
+  //   if (this.markersValue.length !== 0) {
+  //     this.map = new mapboxgl.Map({
+  //       container: this.element,
+  //       center: [51.5213,0.133],
+  //       zoom: 10,
+  //       // style: "mapbox://styles/mapbox/streets-v10"
+  //       style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j"
+  //     })
+  //     this.#addMarkersToMap()
+  //     this.#fitMapToMarkers()
+  //   } else {
+  //     // It can be wahtever I want
+  //       this.element.insertAdjacentHTML("afterbegin", "<h4>Sorry, we could not find what you are looking for</h4>")
+  //   }
   }
 
   #addMarkersToMap() {
