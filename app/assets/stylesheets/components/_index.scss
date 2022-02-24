@@ -5,6 +5,7 @@
 @import "card";
 @import "footer";
 @import "container";
+@import "map";
 
 // General index css
 .slogan-text {
@@ -13,6 +14,12 @@
   margin-bottom: 40px;
   font-weight: 500;
 }
+
+// icons for map
+// empire
+// <i class="fa-brands fa-galactic-republic"></i>
+// rebellion
+// <i class="fa-solid fa-jedi"></i>
 
 
 // Light side gradient:

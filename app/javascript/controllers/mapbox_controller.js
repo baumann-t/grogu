@@ -9,13 +9,14 @@ export default class extends Controller {
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
+    this.map = new mapboxgl.Map({
+      container: this.element,
+      // style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j"
+    })
 
-    // Put this in a if statement
-    // Look at this.markersValue if i do have markers, create the map with the markers
-    // console.log(this.markersValue.length !== 0)
-    // console.log(this.markersValue !== [])
-    // if (this.markersValue !== []) {
-    // Else
+    this.#addMarkersToMap()
+    this.#fitMapToMarkers()
     if (this.markersValue.length !== 0) {
       this.map = new mapboxgl.Map({
         container: this.element,
@@ -32,8 +33,14 @@ export default class extends Controller {
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker()
+      const customMarker = document.createElement("i")
+      customMarker.className = "fa-brands fa-galactic-republic"
+      customMarker.style.fontSize = "30px"
+      customMarker.style.color = "red"
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      new mapboxgl.Marker(customMarker)
         .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup)
         .addTo(this.map)
     });
   }
