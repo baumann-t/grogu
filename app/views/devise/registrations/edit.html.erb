@@ -8,7 +8,7 @@
 
         <div class="form-inputs">
           <%= f.input :username, required: true%>
-          <%= f.input :side, collection: {'dark', 'neutral', 'light'}%>
+          <%= f.input :side, collection: ['dark', 'neutral', 'light'] %>
           <%= f.input :email, required: true, autofocus: true %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

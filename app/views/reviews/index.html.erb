@@ -1,0 +1,12 @@
+<div class="container text-white">
+  <h1 class="pb-3 text-warning">Reviews on <strong>"<%= @all_reviews.first.offer.title%>"</strong> offer:</h1>
+  <% @all_reviews.each do |review| %>
+    <div class="pb-3">
+        <h4> <strong>Review by:</strong> <%= review.offer.user.username%></h3>
+        <h4><strong>Review:</strong> <%= review.comment%></h3>
+      <hr>
+  </div>
+  <% end %>
+    <%= link_to "BACK", request.referer.present? ? request.referer : (root_path), class:"btn btn-light" %>
+    <%= link_to "HOME", root_path, class:"btn btn-light" %>
+</div>

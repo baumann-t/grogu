@@ -1,6 +1,7 @@
 class Offer < ApplicationRecord
   belongs_to :user
   has_many :bookings, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_one_attached :photo
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
@@ -19,4 +20,19 @@ class Offer < ApplicationRecord
   validates :title, :price, :address, presence: true
   validates :description, length: { minimum: 30 }
   validates :price, numericality: { greater_than: 0 }
+
+  def purchased?(user)
+    all_bookings = self.bookings
+    has_booked = false
+    all_bookings.each do |booking|
+      if booking.user_id == user.id
+        has_booked = true
+      end
+    end
+    return has_booked
+  end
+
+  def my_offer?(user)
+    user == self.user
+  end
 end
