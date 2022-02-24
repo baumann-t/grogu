@@ -37,6 +37,7 @@ gem 'devise'
 gem 'faker'
 gem 'cloudinary', '~> 1.16.0'
 gem "open-uri"
+gem 'geocoder'
 
 group :development, :test do
   gem 'pry-byebug'

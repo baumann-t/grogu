@@ -10,6 +10,13 @@ class OffersController < ApplicationController
     else
       @offers = Offer.all
     end
+
+    @markers = @offers.geocoded.map do |offer|
+      {
+        lat: offer.latitude,
+        lng: offer.longitude
+      }
+    end
   end
 
   def show; end
@@ -25,6 +32,8 @@ class OffersController < ApplicationController
   def create
     @offer = Offer.new(offer_params)
     @offer.user = current_user
+    @offer.latitude = Geocoder.search(@offer.address).first.latitude
+    @offer.longitude = Geocoder.search(@offer.address).first.longitude
     if @offer.save
       redirect_to offer_path(@offer)
     else
@@ -54,6 +63,6 @@ class OffersController < ApplicationController
   end
 
   def offer_params
-    params.require(:offer).permit(:title, :price, :location, :description, :photo)
+    params.require(:offer).permit(:title, :price, :location, :description, :photo, :address)
   end
 end

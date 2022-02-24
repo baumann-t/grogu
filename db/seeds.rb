@@ -33,9 +33,12 @@ puts "Creating offers"
   offer = Offer.new(
     title: "#{[Faker::Movies::StarWars.specie, Faker::Movies::StarWars.vehicle, Faker::Movies::StarWars.droid].sample} for #{["sale", "hire", "rent"].sample}",
     price: rand(1..1000),
-    location: Faker::Movies::StarWars.planet,
-    description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}"
+    # location: Faker::Movies::StarWars.planet,
+    description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}",
+    address: Faker::Address.building_number
   )
+  offer.latitude = Geocoder.search(offer.address).first.latitude
+  offer.longitude = Geocoder.search(offer.address).first.longitude
   offer.user = rand_user
   offer.photo.attach(io: file, filename: "new#{rand(1..111111111)}.png")
   offer.save!
