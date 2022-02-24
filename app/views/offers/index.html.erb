@@ -5,26 +5,26 @@
 
     <div class="grid_container">
       <% @offers.each do |offer|%>
-            <% if offer.user.side == "light"%>
-              <div class="card-offer d-flex p-2 my-2 bg-black light-card" style="width: 25rem; height: 20rem;">
-            <% elsif offer.user.side == "dark"%>
-              <div class="card-offer d-flex p-2 my-2 bg-black dark-card" style="width: 25rem; height: 20rem;">
-            <% else %>
-              <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 25rem; height: 20rem;">
-            <% end %>
+        <% if offer.user.side == "light"%>
+          <div class="card-offer d-flex p-2 my-2 bg-black light-card" style="width: 25rem; height: 20rem;">
+        <% elsif offer.user.side == "dark"%>
+          <div class="card-offer d-flex p-2 my-2 bg-black dark-card" style="width: 25rem; height: 20rem;">
+        <% else %>
+          <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 25rem; height: 20rem;">
+        <% end %>
 
-            <%= cl_image_tag offer.photo.key, class:"card-offer-img-top" %>
+          <%= cl_image_tag offer.photo.key, class:"card-offer-img-top" %>
 
-                  <div class="card-offer-body d-flex flex-column">
-                    <h5 class="card-offer-title"><%= offer.title %></h5>
-                    <p class="overflow-auto" style="font-size: 14px;"><%= offer.description %></h5>
-                    <p class="price"><%= offer.price %> CREDITS</p>
-                    <%= link_to "Details", offer_path(offer[:id]) %>
-                  </div>
-                </div>
+          <div class="card-offer-body d-flex flex-column">
+            <h5 class="card-offer-title"><%= offer.title %></h5>
+            <p class="overflow-auto" style="font-size: 14px;"><%= offer.description %></h5>
+            <p class="price"><%= offer.price %> CREDITS</p>
+            <%= link_to "Details", offer_path(offer[:id]) %>
+          </div>
+        </div>
       <% end %>
     </div>
-    <div id="map" style="width: 100%; height: 600px;"
+    <div id="map"
       data-controller="mapbox"
       data-mapbox-markers-value="<%= @markers.to_json %>"
       data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
