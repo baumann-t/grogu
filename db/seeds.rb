@@ -4,10 +4,13 @@ User.destroy_all
 Offer.destroy_all
 Booking.destroy_all
 
-
 puts "Creating users"
 # Create users
 25.times do
+  url = "https://akabab.github.io/starwars-api/api/id/#{rand(1..16)}.json"
+  user_serialized = URI.open(url).read
+  user = JSON.parse(user_serialized)
+  file = URI.open(user["image"])
   user_name = Faker::Movies::StarWars.unique.character
   email_username = user_name.downcase.gsub(/\s+/, ".")
   user = User.new(
@@ -16,6 +19,7 @@ puts "Creating users"
     password: "123456",
     side: ['dark', 'light', 'neutral'].sample
   )
+  user.photo.attach(io: file, filename: "new#{rand(1..111111111)}.png")
   user.save!
   puts user.username
 end
@@ -39,8 +43,9 @@ puts "Creating offers"
   )
   offer.latitude = Geocoder.search(offer.address).first.latitude
   offer.longitude = Geocoder.search(offer.address).first.longitude
-  offer.user = rand_user
   offer.photo.attach(io: file, filename: "new#{rand(1..111111111)}.png")
+  offer.user = rand_user
+
   offer.save!
   puts offer.title
 end

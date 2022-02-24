@@ -12,9 +12,9 @@
       <% end %>
       <div class="card-offer-body d-flex flex-column ">
         <h5 class="font-weight-bold"> <strong>Username:</strong> <%= @user.username %></h5>
-        <p class="overflow-auto"> <strong>Side:</strong> <%= @user.side %></h5>
+        <h5 class="overflow-auto"> <strong>Side:</strong> <%= @user.side %></h5>
         <% if @user.offers.length > 0 %>
-            <h5>All offers:</h5>
+            <h5><strong>All offers:</strong></h5>
         <% end %>
         <% @user.offers.each do |offer| %>
           <div class="d-flex">
