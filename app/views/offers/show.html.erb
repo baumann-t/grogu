@@ -1,29 +1,43 @@
 
 <% if @offer.user.side == "light"%>
-   <div class="container light">
+   <div class="container light d-flex justify-content-center">
 <% elsif @offer.user.side == "dark"%>
-   <div class="container dark">
+   <div class="container dark d-flex justify-content-center">
 <% else %>
-   <div class="container">
+   <div class="container d-flex justify-content-center">
 <% end %>
-  <div class="d-flex justify-content-center text-white">
-    <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 50rem; height: 35rem;">
+  <div class="card-offer bg-black d-flex flex-column mb-5  justify-content-center container-dark" style="width: 50rem; height: 35rem;">
+    <div class="d-flex text-white mb-5">
       <% if @offer.photo.attached?  %>
-        <%= cl_image_tag @offer.photo.key, style:"height:300px, padding-top:15px" %>
+        <%= cl_image_tag @offer.photo.key, style:"height:300px", class:"px-3" %>
       <% end %>
-      <div class="card-offer-body d-flex flex-column align-items-center align-self-center">
+      <div class="card-offer-body d-flex flex-column  align-self-center" >
         <h5 class="font-weight-bold"><%= @offer.title %></h5>
-        <p class="overflow-auto" style="font-size: 14px;"><%= @offer.description %></h5>
+        <p class="overflow-auto" style="font-size: 14px"><%= @offer.description %></h5>
+        <p>Offer by: <%= link_to @offer.user.username, user_path(@offer.user), style:"color:whiter" %></p>
         <p class="price"><%= @offer.price %> CREDITS</p>
         <div class="list-inline">
-          <% if user_signed_in? && @offer.user != current_user %>
+          <% if user_signed_in? && !@offer.my_offer?(current_user) && !@offer.purchased?(current_user)  %>
             <%= link_to 'Book this offer!', new_offer_booking_path(@offer), class:"btn btn-light"%>
           <% end %>
           <%= link_to 'All offers', offers_path, class:"btn btn-light" %>
           <%= link_to 'My offers', my_offers_path, class:"btn btn-light" %>
-          <% if user_signed_in? && @offer.user == current_user %>
+          <% if @offer.reviews.length > 0 %>
+            <%= link_to 'All reviews', offer_reviews_path(@offer), class:"btn btn-light" %>
+          <% end %>
+          <% if user_signed_in? && @offer.my_offer?(current_user) %>
             <%= link_to 'Edit this offer', edit_offer_path, class:"btn btn-light" %>
           <% end %>
+          <% if @offer.purchased?(current_user) %>
+            <p class="pt-3"><strong>You've already purchased this order!</strong></p>
+            <% @review = Review.new %>
+            <%= simple_form_for [@offer, @review] do |f|%>
+              <%= f.input :comment, label: "Add a review:" %>
+              <%= f.submit %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
         </div>
       </div>
     </div>

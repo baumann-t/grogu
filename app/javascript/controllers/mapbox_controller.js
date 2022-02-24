@@ -9,7 +9,6 @@ export default class extends Controller {
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
-
     this.map = new mapboxgl.Map({
       container: this.element,
       // style: "mapbox://styles/mapbox/streets-v10"
@@ -18,6 +17,18 @@ export default class extends Controller {
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+    if (this.markersValue.length !== 0) {
+      this.map = new mapboxgl.Map({
+        container: this.element,
+        // style: "mapbox://styles/mapbox/streets-v10"
+        style: "mapbox://styles/kierandunch/ckzzngzx3000815lqunln2okg"
+      })
+      this.#addMarkersToMap()
+      this.#fitMapToMarkers()
+    } else {
+      // It can be wahtever I want
+        this.element.insertAdjacentHTML("afterbegin", "<h4>Sorry, we could not find what you are looking for</h4>")
+    }
   }
 
   #addMarkersToMap() {
