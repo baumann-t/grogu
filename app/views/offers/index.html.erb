@@ -8,9 +8,9 @@
 
   <div class="grid_container">
     <% @offers.each do |offer|%>
-      <% if offer.user.side == "good"%>
+      <% if offer.user.side == "light"%>
         <div class="card-offer d-flex p-2 my-2 bg-black light-card" style="width: 25rem; height: 20rem;">
-      <% elsif offer.user.side == "evil"%>
+      <% elsif offer.user.side == "dark"%>
         <div class="card-offer d-flex p-2 my-2 bg-black dark-card" style="width: 25rem; height: 20rem;">
       <% else %>
         <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 25rem; height: 20rem;">
