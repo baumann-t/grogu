@@ -29,30 +29,16 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="card-offer bg-black d-flex flex-column mb-5 align-items-center justify-content-center container-dark" style="width: 35rem; height: 25rem;">
-      <div class="d-flex text-white my-auto">
-        <% if @user.photo.attached?  %>
-          <%= cl_image_tag @user.photo.key, style:"height:200px", class:"px-3" %>
-        <% end %>
-        <div class="card-offer-body d-flex flex-column overflow-auto my-auto">
-          <h5 class="font-weight-bold"> <strong>Username:</strong> <%= @user.username %></h5>
-          <h5 class="overflow-auto"> <strong>Side:</strong> <%= @user.side %></h5>
-          <% if @user.offers.length > 0 %>
-              <h5><strong>All offers:</strong></h5>
+  <% if @reviews.length > 0 %>
+    <div class="container text-white">
+      <div class="card-offer bg-black d-flex flex-column mb-5 justify-content-center container-dark px-3" style="width: 35rem; height: 25rem;">
+          <% @reviews.each_with_index do |review, index| %>
+            <h5 class="m-0"><strong>Review <%= index + 1 %>.</strong></h5>
+            <li> <strong>Offer title: </strong><%= review.offer.title %> - <%= link_to 'View offer', offer_path(review.offer), class:"text-white" %></li>
+            <li> <strong>Review given: </strong><%= review.comment %> </li>
+            <hr>
           <% end %>
-          <% @user.offers.each do |offer| %>
-            <div class="d-flex">
-            <li> <%= offer.title %> </li>
-            <%= link_to 'View offer', offer_path(offer), class:"text-white px-2" %>
-            </div>
-          <% end %>
-          <div class="list-inline pt-4", style="text-align: center">
-          <%= link_to "BACK", request.referer.present? ? request.referer : (root_path), class:"btn btn-light" %>
-          <%= link_to 'Home', root_path, class:"btn btn-light" %>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
+  <% end %>
+</div>
 </div>
