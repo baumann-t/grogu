@@ -17,9 +17,10 @@ class Offer < ApplicationRecord
     }
 
   # validates :title, :price, :location, presence: true
-  validates :title, :price, :address, presence: true
+  validates :title, :price, :address, :photo, presence: true, allow_nil: false
   validates :description, length: { minimum: 30 }
   validates :price, numericality: { greater_than: 0 }
+
 
   def purchased?(user)
     all_bookings = self.bookings
