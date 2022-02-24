@@ -27,7 +27,6 @@ end
 # Create offers
 puts "Creating offers"
 
-
 25.times do
   url = "https://akabab.github.io/starwars-api/api/id/#{rand(1..16)}.json"
   user_serialized = URI.open(url).read
@@ -39,13 +38,14 @@ puts "Creating offers"
     price: rand(1..100_00),
     # location: Faker::Movies::StarWars.planet,
     description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}",
-    address: Faker::Address.building_number
+    address: Geocoder.search('europe').sample.address
   )
-  offer.latitude = Geocoder.search(offer.address).first.latitude
-  offer.longitude = Geocoder.search(offer.address).first.longitude
-  offer.photo.attach(io: file, filename: "new#{rand(1..111111111)}.png")
-  offer.user = rand_user
-
+  unless offer.address.nil?
+    offer.latitude = Geocoder.search(offer.address).first.latitude
+    offer.longitude = Geocoder.search(offer.address).first.longitude
+    offer.photo.attach(io: file, filename: "new#{rand(1..111111111)}.png")
+    offer.user = rand_user
+  end
   offer.save!
   puts offer.title
 end

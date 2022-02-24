@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from "mapbox-gl"
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 export default class extends Controller {
   static values = {
@@ -11,8 +12,10 @@ export default class extends Controller {
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
       container: this.element,
-      center: [-0.976295, 52.173357],
+      pitch: 43.00,
+      bearing: -140.80,
       minZoom: 5,
+      center: [-8.634722, 52.511263],
       style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j"
     })
 
@@ -32,6 +35,9 @@ export default class extends Controller {
   //     // It can be wahtever I want
   //       this.element.insertAdjacentHTML("afterbegin", "<h4>Sorry, we could not find what you are looking for</h4>")
   //   }
+    // this below is the introduction of a search bar in mapbox
+    // this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+    // mapboxgl: mapboxgl }))
   }
 
   #addMarkersToMap() {
