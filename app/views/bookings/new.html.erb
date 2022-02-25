@@ -1,11 +1,22 @@
 <div class="container d-flex justify-content-center m-3">
   <div class="col-6 text-white">
     <%= simple_form_for [@offer, @booking] do |f| %>
-      <%= f.input :user_message, :label => "Message to the seller"%>
-      <%= f.input :start_date%>
-      <%= f.input :end_date%>
-      <%= link_to "Back", offers_path %>
-      <%= f.submit %>
+      <%= f.input :user_message,
+                  :label => "Message to the seller" %>
+      <%= f.text_field :start_date,
+                       placeholder: "Booking start date",
+                       data: {
+                              controller: "flatpickr",
+                              flatpickr_min_date: Time.zone.now
+                             }%>
+      <%= f.text_field :end_date,
+                       placeholder: "Booking end date",
+                       data: {
+                              controller: "flatpickr",
+                              flatpickr_min_date: Time.zone.now
+                             }%>
+      <%= f.submit%>
     <% end %>
+    <%= link_to "Back", offer_path(@offer), class:"btn btn-light py-0 my-3" %>
   </div>
 </div>
