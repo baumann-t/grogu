@@ -44,7 +44,7 @@ cities = %w[London Bratislava Bucharest Reykjavik Lisbon Dubrovnik Copenhagen
   offer = Offer.new(
     title: "#{[Faker::Movies::StarWars.specie, Faker::Movies::StarWars.vehicle, Faker::Movies::StarWars.droid].sample} #{['available', 'for hire', 'for rent'].sample}",
     price: rand(1..100_00),
-    description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}",
+    description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}",
     address: location.address
   )
   offer.latitude = location.longitude

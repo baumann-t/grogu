@@ -7,7 +7,7 @@ class Offer < ApplicationRecord
   has_one_attached :photo
 
   validates :title, :price, :address, :photo, presence: true, allow_nil: false
-  validates :description, length: { minimum: 30 }
+  validates :description, length: { minimum: 15 }
   validates :price, numericality: { greater_than: 0 }
 
   after_validation :geocode, if: :will_save_change_to_address?
