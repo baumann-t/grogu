@@ -1,6 +1,7 @@
-<div class="container d-flex justify-content-center m-3">
-  <div class="col-6 text-white">
-    <%= simple_form_for [@offer, @booking] do |f| %>
+<div class="container d-flex m-0 p-0 pb-3">
+  <div class="col-8 text-white">
+    <h3>Book this offer:</h3>
+    <%= simple_form_for [offer, booking] do |f| %>
       <%= f.input :user_message,
                   :label => "Message to the seller" %>
       <%= f.text_field :start_date,
@@ -17,6 +18,5 @@
                              }%>
       <%= f.submit%>
     <% end %>
-    <%= link_to "Back", offer_path(@offer), class:"btn btn-light py-0 my-3" %>
   </div>
 </div>
