@@ -10,45 +10,30 @@ export default class extends Controller {
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
+    if (this.markersValue.length > 0) {
     this.map = new mapboxgl.Map({
       container: this.element,
+      center: [38.7223, 9.1393],
       pitch: 43.00,
-      bearing: -140.80,
+      bearing: 30.4,
       minZoom: 5,
-      center: [-8.634722, 52.511263],
-      style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j"
+      style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j",
     })
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
-
-    this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl }))
-  //   if (this.markersValue.length !== 0) {
-  //     this.map = new mapboxgl.Map({
-  //       container: this.element,
-  //       center: [51.5213,0.133],
-  //       zoom: 10,
-  //       // style: "mapbox://styles/mapbox/streets-v10"
-  //       style: "mapbox://styles/kierandunch/cl019o3cv000d15pbhg5nfk6j"
-  //     })
-  //     this.#addMarkersToMap()
-  //     this.#fitMapToMarkers()
-  //   } else {
-  //     // It can be wahtever I want
-  //       this.element.insertAdjacentHTML("afterbegin", "<h4>Sorry, we could not find what you are looking for</h4>")
-  //   }
-    // this below is the introduction of a search bar in mapbox
-    // this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-    // mapboxgl: mapboxgl }))
+    } else {
+        this.element.insertAdjacentHTML("afterbegin", "<h4>Sorry, we could not find what you are looking for.</h4>")
+    }
   }
+
+  markers = ["fa-brands fa-galactic-republic sith", "fa-solid fa-jedi jedi"]
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const customMarker = document.createElement("i")
-      customMarker.className = "fa-brands fa-galactic-republic"
+      customMarker.className = this.markers[Math.floor(Math.random() * this.markers.length)]
       customMarker.style.fontSize = "30px"
-      customMarker.style.color = "red"
       const popup = new mapboxgl.Popup().setHTML(marker.info_window)
       new mapboxgl.Marker(customMarker)
         .setLngLat([ marker.lng, marker.lat ])
