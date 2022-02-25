@@ -1,11 +1,12 @@
 <div class="container d-flex justify-content-center m-3">
-  <div class="col-6">
-  <h1>Edit</h1>
+  <div class="col-6 text-white">
+  <h1>Edit your offer</h1>
     <%= simple_form_for @offer do |f| %>
       <%= f.input :title%>
       <%= f.input :price%>
-      <%= f.input :location%>
-      <%= f.input :description%>
+      <%= f.input :address,
+          input_html: { style: "display: none", data: { geocoder_target: "address" } },
+          wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
       <%= f.input :photo, as: :file %>
       <%= link_to "Back", offer_path, class:"btn btn-light" %>
       <%= f.submit class:"btn btn-light" %>
