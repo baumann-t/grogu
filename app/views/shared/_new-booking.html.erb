@@ -1,22 +1,27 @@
+<%# <div class="m-0 p-0 pb-3"> %>
 <div class="container d-flex m-0 p-0 pb-3">
   <div class="col-8 text-white">
     <h3>Book this offer:</h3>
-    <%= simple_form_for [offer, booking] do |f| %>
-      <%= f.input :user_message,
-                  :label => "Message to the seller" %>
-      <%= f.text_field :start_date,
-                       placeholder: "Booking start date",
-                       data: {
-                              controller: "flatpickr",
-                              flatpickr_min_date: Time.zone.now
-                             }%>
-      <%= f.text_field :end_date,
-                       placeholder: "Booking end date",
-                       data: {
-                              controller: "flatpickr",
-                              flatpickr_min_date: Time.zone.now
-                             }%>
-      <%= f.submit%>
-    <% end %>
+      <div>
+        <%= simple_form_for [offer, booking], html: { class: "btn-width"} do |f| %>
+          <%= f.input :user_message,
+                      :label => "Message to the seller" %>
+          <%= f.text_field :start_date,
+                          placeholder: "Booking start date",
+                          class: "btn-width",
+                          data: {
+                                  controller: "flatpickr",
+                                  flatpickr_min_date: Time.zone.now
+                                }%>
+          <%= f.text_field :end_date,
+                          placeholder: "Booking end date",
+                          class: "btn-width",
+                          data: {
+                                  controller: "flatpickr",
+                                  flatpickr_min_date: Time.zone.now
+                                }%>
+          <%= f.submit class:"btn btn-light btn-width"%>
+        <% end %>
+      </div>
   </div>
 </div>

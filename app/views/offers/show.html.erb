@@ -14,11 +14,11 @@
       <div class="card-offer-body d-flex flex-column align-self-center" >
         <h5 class="font-weight-bold"><%= @offer.title %></h5>
         <p class="overflow-auto" style="font-size: 14px"><%= @offer.description %></h5>
-        <p>Offer by: <%= link_to @offer.user.username, user_path(@offer.user), style:"color:whiter" %></p>
+        <p>Offer by: <%= link_to @offer.user.username, user_path(@offer.user), style:"color:white" %></p>
         <p class="price"><%= @offer.price %> CREDITS</p>
         <div class="list-inline">
           <% if user_signed_in? && !@offer.my_offer?(current_user) && !@offer.purchased?(current_user)  %>
-            <%= render "shared/new-booking", offer: @offer, booking:Booking.new %>
+            <%= render "shared/new-booking", offer: @offer, booking:Booking.new%>
           <% end %>
           <%= link_to 'All offers', offers_path, class:"btn btn-light" %>
           <%= link_to 'My offers', my_offers_path, class:"btn btn-light" %>
