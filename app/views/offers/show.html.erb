@@ -1,10 +1,10 @@
 
 <% if @offer.user.side == "light"%>
-   <div class="container light d-flex justify-content-center">
+   <div class="container light d-flex justify-content-center max-width">
 <% elsif @offer.user.side == "dark"%>
-   <div class="container dark d-flex justify-content-center">
+   <div class="container dark d-flex justify-content-center max-width">
 <% else %>
-   <div class="container d-flex justify-content-center">
+   <div class="container d-flex justify-content-center max-width">
 <% end %>
   <div class="card-offer bg-black d-flex flex-column mb-5 align-items-center container-dark" style="width: 50rem; height: 35rem;">
     <div class="d-flex text-white mb-5">
