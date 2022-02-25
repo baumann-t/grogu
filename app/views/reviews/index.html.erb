@@ -1,9 +1,8 @@
 <div class="container text-white">
   <h1 class="pb-3 text-warning">Reviews on <strong>"<%= @all_reviews.first.offer.title%>"</strong> offer:</h1>
-  <% @all_reviews.each do |review| %>
+  <% @all_reviews.each_with_index do |review, index| %>
     <div class="pb-3">
-        <h4> <strong>Review by:</strong> <%= review.user.username%></h3>
-        <h4><strong>Review:</strong> <%= review.comment%></h3>
+        <h4><strong>Review </strong><%= index+1 %>: <%= review.comment%></h3>
       <hr>
   </div>
   <% end %>
