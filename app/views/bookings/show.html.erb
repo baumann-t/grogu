@@ -15,7 +15,6 @@
           <%= f.input :confirmed%>
         <div class ="d-flex">
           <%= f.button :submit, "Confirm Booking", { class: 'btn-light' }%>
-          <%= link_to "Back to all bookings", offers_bookings_path(@booking.offer), class:"btn btn-light p-2 mx-2" %>
         </div>
         <% end %>
       </div>
@@ -24,6 +23,7 @@
 
     <% else %>
       <p class="text-white"><%="You are not authorized to see this booking." %></p>
-      <%= link_to 'Home', root_path %>
   <% end %>
+  <br>
+  <%= link_to "Home", root_path, class:"btn btn-light" %> <%= link_to "Back to all bookings", my_bookings_path, class:"btn btn-light" %>
 </div>
