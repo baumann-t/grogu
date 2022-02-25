@@ -6,10 +6,10 @@
 <% else %>
    <div class="container d-flex justify-content-center max-width">
 <% end %>
-  <div class="card-offer bg-black d-flex flex-column mb-5 align-items-center container-dark" style="width: 50rem; height: 35rem;">
+  <div class="card-offer bg-black d-flex flex-column mb-5  justify-content-center container-dark" style="width: 50rem; height: 35rem;">
     <div class="d-flex text-white mb-5">
       <% if @offer.photo.attached?  %>
-        <%= cl_image_tag @offer.photo.key, style:"height:300px", class:"px-3" %>
+        <%= cl_image_tag @offer.photo.key, style:"height:300px", class:"px-3 align-self-center" %>
       <% end %>
       <div class="card-offer-body d-flex flex-column align-self-center" >
         <h5 class="font-weight-bold"><%= @offer.title %></h5>
