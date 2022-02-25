@@ -7,7 +7,7 @@ The following is a loose outline of each member's specialty during the project, 
 Claire Conrardy: UI/UX Designer, Front-End Developer
 - Homepage, all offers page, branding
 
-Huang Shuwei: Full-Stack Developer
+Huang Shewei: Full-Stack Developer
 - Mapbox and Geocoder integration
 
 Thomas Baumann: Back-End Developer
