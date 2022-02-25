@@ -27,4 +27,11 @@ class Offer < ApplicationRecord
   def my_offer?(user)
     user == self.user
   end
+
+  def mapping
+    return unless Geocoder.search(self.address).first
+
+    self.latitude = Geocoder.search(self.address).first.latitude
+    self.longitude = Geocoder.search(self.address).first.longitude
+  end
 end

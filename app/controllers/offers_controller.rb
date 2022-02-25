@@ -22,7 +22,7 @@ class OffersController < ApplicationController
     @offer = Offer.new(offer_params)
     @offer.user = current_user
 
-    offer_mapping(@offer)
+    @offer.mapping
 
     if @offer.save
       redirect_to offer_path(@offer)
@@ -47,13 +47,6 @@ class OffersController < ApplicationController
   end
 
   private
-
-  def offer_mapping(offer)
-    return unless Geocoder.search(offer.address).first
-
-    offer.latitude = Geocoder.search(offer.address).first.latitude
-    offer.longitude = Geocoder.search(offer.address).first.longitude
-  end
 
   def create_markers(offers)
     offers.geocoded.map do |offer|
