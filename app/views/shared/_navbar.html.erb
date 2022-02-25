@@ -28,7 +28,16 @@
             <% if user_signed_in? %>
               <li class="nav-item dropdown">
                 <% if current_user.photo.attached? %>
-                  <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <%= cl_image_tag(current_user.photo.key,
+                                    :transformation=>[
+                                                     {:gravity=>"face", :height=>50, :width=>50, :crop=>"crop"},
+                                                     {:radius=>"max"},
+                                                     {:crop=>"scale"}],
+                                    class: "dropdown-toggle",
+                                    id: "navbarDropdown",
+                                    data: { bs_toggle: "dropdown" },
+                                    'aria-haspopup': true,
+                                    'aria-expanded': false) %>
                 <% else %>
                   <%= image_tag "http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/6309e3eb394ba0a.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                 <% end %>
