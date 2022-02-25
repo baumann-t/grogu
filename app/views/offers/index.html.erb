@@ -3,35 +3,33 @@
 
   <div class="map_card_container">
 
+    <div class="grid_container">
+        <% @offers.each do |offer|%>
+          <%= link_to offer_path(offer[:id]), class:"text-white", style:"text-decoration:none" do %>
+            <% if offer.user.side == "light"%>
+              <div class="card-offer p-2 my-2 light-card">
+            <% elsif offer.user.side == "dark"%>
+              <div class="card-offer p-2 my-2 dark-card">
+            <% else %>
+              <div class="card-offer p-2 my-2">
+            <% end %>
 
-  <div class="grid_container">
-      <% @offers.each do |offer|%>
-      <%= link_to offer_path(offer[:id]), class:"text-white", style:"text-decoration:none" do %>
-        <% if offer.user.side == "light"%>
-          <div class="card-offer d-flex p-2 my-2 bg-black light-card" style="width: 25rem; height: 20rem;">
-        <% elsif offer.user.side == "dark"%>
-          <div class="card-offer d-flex p-2 my-2 bg-black dark-card" style="width: 25rem; height: 20rem;">
-        <% else %>
-          <div class="card-offer d-flex p-2 my-2 bg-black" style="width: 25rem; height: 20rem;">
+              <%= cl_image_tag offer.photo.key, class:"card-offer-img-top" %>
+
+              <div class="card-offer-body flex-column justify-content-between">
+                <div class="card-offer-info">
+                  <h5 class="card-offer-title"><%= offer.title %></h5>
+                  <p class="overflow-auto" style="font-size: 14px;"><%= offer.description %></h5>
+                </div>
+
+                <div class="card-offer-details">
+                  <p class="price"><%= offer.price %> CREDITS</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
         <% end %>
-
-          <%= cl_image_tag offer.photo.key, class:"card-offer-img-top" %>
-
-          <div class="card-offer-body d-flex flex-column justify-content-between">
-            <div class="card-offer-info">
-              <h5 class="card-offer-title"><%= offer.title %></h5>
-              <p class="overflow-auto" style="font-size: 14px;"><%= offer.description %></h5>
-            </div>
-
-            <div class="card-offer-details">
-              <p class="price"><%= offer.price %> CREDITS</p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <% end %>
     </div>
-
 
     <div id="map"
       data-controller="mapbox"
