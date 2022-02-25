@@ -1,22 +1,11 @@
 class OffersController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    if params[:query].present?
-      @offers = Offer.search_by_title(params[:query])
-    else
-      @offers = Offer.all
-    end
-
-    @markers = @offers.geocoded.map do |offer|
-      {
-        lat: offer.latitude,
-        lng: offer.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { offer: offer })
-      }
-    end
+    @offers = params[:query].present? ? Offer.search_by_title(params[:query]) : Offer.all
+    @markers = create_markers(@offers)
   end
 
   def show; end
@@ -32,10 +21,9 @@ class OffersController < ApplicationController
   def create
     @offer = Offer.new(offer_params)
     @offer.user = current_user
-    if Geocoder.search(@offer.address).first
-      @offer.latitude = Geocoder.search(@offer.address).first.latitude
-      @offer.longitude = Geocoder.search(@offer.address).first.longitude
-    end
+
+    offer_mapping(@offer)
+
     if @offer.save
       redirect_to offer_path(@offer)
     else
@@ -47,7 +35,7 @@ class OffersController < ApplicationController
 
   def update
     if @offer.update(offer_params)
-      redirect_to @offer
+      redirect_to offer_path(@offer)
     else
       render :edit
     end
@@ -59,6 +47,23 @@ class OffersController < ApplicationController
   end
 
   private
+
+  def offer_mapping(offer)
+    return unless Geocoder.search(offer.address).first
+
+    offer.latitude = Geocoder.search(offer.address).first.latitude
+    offer.longitude = Geocoder.search(offer.address).first.longitude
+  end
+
+  def create_markers(offers)
+    offers.geocoded.map do |offer|
+      {
+        lat: offer.latitude,
+        lng: offer.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { offer: offer })
+      }
+    end
+  end
 
   def set_offer
     @offer = Offer.find(params[:id])
