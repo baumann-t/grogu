@@ -18,7 +18,7 @@
             </div>
           <% end %>
           <div class="list-inline pt-4", style="text-align: center">
-          <%= link_to "BACK", request.referer.present? ? request.referer : (root_path), class:"btn btn-light" %>
+          <%= link_to "Back", request.referer.present? ? request.referer : (root_path), class:"btn btn-light" %>
           <%= link_to 'Home', root_path, class:"btn btn-light" %>
           <% if current_user == @user %>
             <%= link_to 'Edit profile', edit_user_registration_path(current_user), class:"btn btn-light" %>
@@ -31,14 +31,14 @@
 
   <% if @reviews.length > 0 %>
     <div class="container text-white">
-      <div class="card-offer bg-black d-flex flex-column mb-5 justify-content-center container-dark px-3" style="width: 35rem; height: 25rem;">
+      <div class="card-offer flex-column mb-5 justify-content-center container-dark px-3" style="width: 35rem; height: 25rem;">
           <% @reviews.each_with_index do |review, index| %>
             <h5 class="m-0"><strong>Review <%= index + 1 %>.</strong></h5>
             <li> <strong>Offer title: </strong><%= review.offer.title %> - <%= link_to 'View offer', offer_path(review.offer), class:"text-white" %></li>
             <li> <strong>Review given: </strong><%= review.comment %> </li>
             <hr>
           <% end %>
-        </div>
+      </div>
+    </div>
   <% end %>
-</div>
 </div>

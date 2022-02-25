@@ -1,23 +1,21 @@
 // Import your components CSS files here.
 @import "alert";
 @import "avatar";
-@import "navbar";
-@import "card";
-@import "footer";
-@import "container";
-@import "map";
-@import "form";
 @import "btn";
+@import "card";
+@import "container";
+@import "footer";
+@import "form";
+@import "map";
 @import "max_width";
+<<<<<<< HEAD
 @import "btn-width";
+=======
+@import "navbar";
+>>>>>>> master
 
 // General index css
-.slogan-text {
-  color: #E6DA34;
-  text-align: center;
-  margin-bottom: 40px;
-  font-weight: 500;
-}
+
 
 // icons for map
 // empire
@@ -28,14 +26,14 @@
 
 // Light side gradient:
 .light {
-  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(46,103,248, 0.30));
+  background-image: radial-gradient(ellipse farthest-side at bottom center, rgba(46,103,248, 0.50), rgba(245, 246, 252, 0));
 }
 .jedi {
   color: rgb(46,103,248)
 }
 // Dark-side gradient:
 .dark {
-  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(235,33,46, 0.30));
+  background-image: radial-gradient(ellipse farthest-side at bottom center, rgba(235,33,46, 0.50), rgba(245, 246, 252, 0));
 }
 .sith {
   color: rgb(235,33,46)
