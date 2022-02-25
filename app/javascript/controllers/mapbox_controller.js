@@ -27,12 +27,13 @@ export default class extends Controller {
     }
   }
 
+  markers = ["fa-brands fa-galactic-republic sith", "fa-solid fa-jedi jedi"]
+
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const customMarker = document.createElement("i")
-      customMarker.className = "fa-brands fa-galactic-republic"
+      customMarker.className = this.markers[Math.floor(Math.random() * this.markers.length)]
       customMarker.style.fontSize = "30px"
-      customMarker.style.color = "red"
       const popup = new mapboxgl.Popup().setHTML(marker.info_window)
       new mapboxgl.Marker(customMarker)
         .setLngLat([ marker.lng, marker.lat ])

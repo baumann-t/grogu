@@ -27,9 +27,15 @@
 .light {
   background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(46,103,248, 0.30));
 }
+.jedi {
+  color: rgb(46,103,248)
+}
 // Dark-side gradient:
 .dark {
   background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(235,33,46, 0.30));
+}
+.sith {
+  color: rgb(235,33,46)
 }
 
 // Light side gradient:
