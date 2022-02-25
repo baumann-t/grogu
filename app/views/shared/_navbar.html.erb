@@ -29,10 +29,7 @@
               <li class="nav-item dropdown">
                 <% if current_user.photo.attached? %>
                   <%= cl_image_tag(current_user.photo.key,
-                                    :transformation=>[
-                                                     {:gravity=>"face", :height=>50, :width=>50, :crop=>"crop"},
-                                                     {:radius=>"max"},
-                                                     {:crop=>"scale"}],
+                                    :transformation=>[ {:aspect_ratio=>"1.0", :gravity=>"face", :width=>50, :zoom=>0.5, :crop=>"thumb"}, {:radius=>"max"},],
                                     class: "dropdown-toggle",
                                     id: "navbarDropdown",
                                     data: { bs_toggle: "dropdown" },
