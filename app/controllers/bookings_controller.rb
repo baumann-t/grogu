@@ -4,11 +4,6 @@ class BookingsController < ApplicationController
 
   def show; end
 
-  def new
-    @booking = Booking.new
-    @offer = Offer.where(id: params[:offer_id]).first
-  end
-
   def create
     @booking = Booking.new(booking_params)
     @offer = Offer.where(id: params[:offer_id]).first

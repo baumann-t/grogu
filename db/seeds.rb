@@ -27,29 +27,33 @@ end
 # Create offers
 puts "Creating offers"
 
-25.times do
+# variables for offers
+cities = %w[London Bratislava Bucharest Reykjavik Lisbon Dubrovnik Copenhagen
+            Istanbul Warsaw Zagre Vienna Ljubljana Antwerp Kraków Sofia Dublin
+            Marseille Bruges Birmingham Oslo Rotterdam Edinburgh
+            Saint-Petersburg Porto Madrid Venice Berlin Budapest Riga Rome Athens]
+
+25.times do |count|
   url = "https://akabab.github.io/starwars-api/api/id/#{rand(1..16)}.json"
   user_serialized = URI.open(url).read
   user = JSON.parse(user_serialized)
   file = URI.open(user["image"])
   rand_user = User.all.sample
+  location = Geocoder.search(cities[count]).first
+
   offer = Offer.new(
     title: "#{[Faker::Movies::StarWars.specie, Faker::Movies::StarWars.vehicle, Faker::Movies::StarWars.droid].sample} #{['available', 'for hire', 'for rent'].sample}",
     price: rand(1..100_00),
-    # location: Faker::Movies::StarWars.planet,
     description: "#{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}. #{Faker::Movies::StarWars.quote}",
-    address: Geocoder.search('europe').sample.address
+    address: location.address
   )
-  unless offer.address.nil?
-    offer.latitude = Geocoder.search(offer.address).first.latitude
-    offer.longitude = Geocoder.search(offer.address).first.longitude
-    offer.photo.attach(io: file, filename: "new#{rand(1..111111111)}.png")
-    offer.user = rand_user
-  end
+  offer.latitude = location.longitude
+  offer.longitude = location.latitude
+  offer.photo.attach(io: file, filename: "new#{rand(1..111_111_111)}.png")
+  offer.user = rand_user
   offer.save!
   puts offer.title
 end
-
 
 # Create bookings
 puts "Creating bookings"
@@ -58,13 +62,12 @@ puts "Creating bookings"
   rand_offer = Offer.all.sample
   book = Booking.new(
     user_message: Faker::Movies::StarWars.wookiee_sentence,
-    start_date: Date.new(2001,2,3),
-    end_date: Date.new(2003,2,3)
+    start_date: Date.new(2001, 2, 3),
+    end_date: Date.new(2003, 2, 3)
   )
 
   book.user = rand_user
   book.offer = rand_offer
-
   book.save!
   puts book.user_message
 end
