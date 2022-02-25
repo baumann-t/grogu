@@ -13,17 +13,17 @@
       <div class="text-white">
         <%= simple_form_for @booking do |f| %>
           <%= f.input :confirmed%>
-        <div class ="d-flex">
-          <%= f.button :submit, "Confirm Booking", { class: 'btn-light' }%>
-        </div>
+          <div class ="d-flex">
+            <%= f.button :submit, "Confirm Booking", { class: 'btn-light' }%>
+          </div>
         <% end %>
       </div>
     <% end %>
 
-
-    <% else %>
-      <p class="text-white"><%="You are not authorized to see this booking." %></p>
+  <% else %>
+    <p class="text-white"><%="You are not authorized to see this booking." %></p>
   <% end %>
+
   <br>
   <%= link_to "Home", root_path, class:"btn btn-light" %> <%= link_to "Back to all bookings", my_bookings_path, class:"btn btn-light" %>
 </div>
